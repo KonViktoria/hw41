@@ -5,6 +5,10 @@ export const StudentList = () => {
     const [students, setStudents] = useState(initialStudents)
 
     const handleAddStudent=()=>{
+        const newStudent = {
+            id: crypto.randomUUID(),
+            name: "Sarah"
+        };
         setStudents((prev) =>{
             const alreadyAdded = prev.some((student) => student.name === newStudent.name);
 
@@ -14,12 +18,11 @@ export const StudentList = () => {
 
             return [...prev, newStudent];
         });
-        const newStudent = {
-            id: crypto.randomUUID(),
-            name: "Sarah"
-        };
+
     }
-  
+      const handelClear=()=>{
+         setStudents((prev)=>prev.filter((student)=>student.id !== 2))
+      }
 
     
     
@@ -31,6 +34,8 @@ export const StudentList = () => {
                 </p>
             ))}
         <button onClick={handleAddStudent}> Добавить Sarah</button>
+        <button onClick={handelClear}>Удалить</button>
+        
         </div>
 
 }
